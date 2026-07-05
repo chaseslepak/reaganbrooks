@@ -1,15 +1,19 @@
 # Reagan Brooks LLC — reaganbrooks.com
 
-A single, static holding page. No CMS, no build step, no JavaScript, no
-tracking. It renders fully with JavaScript disabled.
+A small, static site for a privately held holding company. No CMS, no build
+step, no JavaScript, no tracking. Every page renders fully with JavaScript
+disabled. Slate Navy ground, Bone text, Antique Brass accent, EB Garamond.
 
 ## Files
 
 ```
-index.html            The page (one scroll, three quiet sections)
+index.html            Home — wordmark, statement, the four tenets
+approach.html         How we hold — the tenets expanded
+companies.html        Our companies — seven sectors (I–VII)
+contact.html          Contact — hi@reaganbrooks.com
 styles.css            All styling; palette fixed to five tokens
 robots.txt            Allows indexing
-sitemap.xml           One URL
+sitemap.xml           All four pages
 assets/
   wordmark-navy.svg   Stacked REAGAN / rule / BROOKS — Slate Navy
   wordmark-bone.svg   Same, Bone (for use on Slate Navy)
@@ -46,13 +50,10 @@ redrawn as live text.
 
 ## Notes for the client
 
-Two bracketed placeholders are left in `index.html` for you to fill before
-launch:
-
-- **Email** — `[general@reaganbrooks.com]` in the contact line. Confirm the
-  address and remove the brackets (update both the visible text and the
-  `mailto:` link).
-- **Year** — `[Year]` in the footer copyright.
+The contact email is set to `hi@reaganbrooks.com` site-wide. The only
+remaining placeholders are on **companies.html**: each of the seven sectors
+shows `[Sector]` and `[ company ]` — replace them with the real sector and
+company names once confirmed. The copyright year is set to 2026.
 
 ## Decisions worth flagging
 
