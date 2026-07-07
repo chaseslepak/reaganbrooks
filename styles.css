@@ -371,6 +371,12 @@ main { flex: 1 0 auto; width: 100%; }
   letter-spacing: 0.05em;
   color: var(--bone-muted);
 }
+.foot-note {
+  margin: 0.55rem 0 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--bone-muted);
+}
 
 /* =====================================================================
    Motion — CSS-only load fade (no JS). Guarded for reduced-motion.
