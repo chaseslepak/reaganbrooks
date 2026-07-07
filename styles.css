@@ -270,10 +270,10 @@ main { flex: 1 0 auto; width: 100%; }
 }
 .sector {
   display: grid;
-  grid-template-columns: 4.5rem 1fr auto;
+  grid-template-columns: 4.5rem 1fr;
   gap: clamp(1rem, 3vw, 2rem);
   align-items: baseline;
-  padding: clamp(1.4rem, 3.5vw, 1.9rem) 0;
+  padding: clamp(1.5rem, 3.5vw, 2rem) 0;
   border-top: 1px solid var(--hairline);
   text-align: left;
 }
@@ -286,25 +286,23 @@ main { flex: 1 0 auto; width: 100%; }
   line-height: 1;
   font-variant-numeric: normal;
 }
+.sector__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 .sector__name {
   font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.4375rem);
   font-weight: 500;
   color: var(--bone);
 }
-.sector__name .placeholder { font-weight: 400; color: var(--bone-muted); }
-.sector__note {
-  font-size: 0.9375rem;
+.sector__firms {
+  font-size: 1.0625rem;
   color: var(--bone-muted);
-  text-align: right;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
-.sectors__foot {
-  max-width: 40rem;
-  margin: clamp(2rem, 5vw, 3rem) auto 0;
-  color: var(--bone-muted);
-  font-size: 0.9375rem;
-  text-align: center;
-}
+.sector__firms .dot { color: var(--antique-brass); margin: 0 0.15em; }
+.sector__firms--pending { font-style: italic; }
 
 /* Contact page */
 .contact-block { padding: clamp(2rem, 6vw, 4rem) 0 0; text-align: center; }
@@ -396,6 +394,5 @@ main { flex: 1 0 auto; width: 100%; }
 @media (max-width: 40rem) {
   .hold { grid-template-columns: 1fr; gap: 0.5rem; }
   .hold__num { margin-bottom: 0.25rem; }
-  .sector { grid-template-columns: 3rem 1fr; }
-  .sector__note { grid-column: 2; text-align: left; }
+  .sector { grid-template-columns: 2.75rem 1fr; }
 }
