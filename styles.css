@@ -303,6 +303,7 @@ main { flex: 1 0 auto; width: 100%; }
 }
 .sector__firms .dot { color: var(--antique-brass); margin: 0 0.15em; }
 .sector__firms--pending { font-style: italic; }
+.sector__firms--note { font-style: italic; max-width: 34ch; }
 
 /* Contact page */
 .contact-block { padding: clamp(2rem, 6vw, 4rem) 0 0; text-align: center; }
