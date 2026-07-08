@@ -1,0 +1,399 @@
+/* Reagan Brooks LLC — reaganbrooks.com
+   Static multi-page site. No JavaScript. No third-party requests.
+   Palette is fixed to the five brand tokens defined in :root; faint
+   structural lines and de-emphasis are tints of those tokens (color-mix),
+   so no colour outside the palette is introduced. */
+
+/* ---- Fonts: self-hosted EB Garamond, latin subset ---- */
+@font-face {
+  font-family: "EB Garamond";
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("/assets/fonts/eb-garamond-latin-roman.woff2") format("woff2");
+}
+@font-face {
+  font-family: "EB Garamond";
+  font-style: italic;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("/assets/fonts/eb-garamond-latin-italic.woff2") format("woff2");
+}
+
+/* ---- Tokens ---- */
+:root {
+  --slate-navy:    #1C2C3E;
+  --antique-brass: #8B6F3F;
+  --bone:          #F5F1E8;
+  --stone-gray:    #6B6358;
+  --ink:           #2D2A26;
+
+  /* tints derived from the palette, for use on the navy ground */
+  --bone-muted: color-mix(in srgb, var(--bone) 68%, transparent);
+  --hairline:   color-mix(in srgb, var(--bone) 15%, transparent);
+  --hairline-strong: color-mix(in srgb, var(--bone) 34%, transparent);
+
+  --serif: "EB Garamond", "Hoefler Text", Garamond, Georgia, serif;
+
+  --measure: 34rem;
+  --page-x: clamp(1.5rem, 6vw, 4rem);
+  --max: 60rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--slate-navy);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--slate-navy);
+  color: var(--bone);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.1875rem);
+  line-height: 1.66;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: normal;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "onum" 1, "pnum" 1;
+}
+
+::selection { background: var(--antique-brass); color: var(--bone); }
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+:focus-visible {
+  outline: 2px solid var(--antique-brass);
+  outline-offset: 4px;
+}
+
+/* Small caps utility label */
+.eyebrow {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.24em;
+  color: var(--antique-brass);
+  margin: 0 0 clamp(1.25rem, 3vw, 1.75rem);
+}
+
+/* =====================================================================
+   Header + navigation
+   ===================================================================== */
+.site-head {
+  padding: clamp(2.75rem, 7vw, 4.5rem) var(--page-x) 0;
+  text-align: center;
+}
+.brandlink { display: inline-block; }
+.wordmark { width: clamp(13rem, 34vw, 20rem); margin: 0 auto; }
+.wordmark--hero { width: clamp(15rem, 44vw, 26rem); }
+
+.masthead__title { margin: 0; font-weight: 400; line-height: 1; }
+
+.nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(1.4rem, 4vw, 2.75rem);
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding-top: clamp(1.5rem, 4vw, 2.25rem);
+  border-top: 1px solid var(--hairline);
+  max-width: var(--max);
+  margin-inline: auto;
+}
+.nav a {
+  font-size: 0.9375rem;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.2em;
+  color: var(--bone-muted);
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid transparent;
+  transition: color 140ms ease, border-color 140ms ease;
+}
+.nav a:hover { color: var(--bone); }
+.nav a[aria-current="page"] {
+  color: var(--antique-brass);
+  border-bottom-color: var(--antique-brass);
+}
+
+/* =====================================================================
+   Main / sections
+   ===================================================================== */
+main { flex: 1 0 auto; width: 100%; }
+
+.wrap {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--page-x);
+}
+
+.hero {
+  padding: clamp(3rem, 8vw, 6rem) var(--page-x) clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+/* Statement */
+.statement { text-align: center; padding: clamp(1.5rem, 5vw, 3rem) 0 0; }
+.statement__text {
+  max-width: var(--measure);
+  margin: 0 auto;
+  color: var(--bone);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.375rem);
+  line-height: 1.42;
+  letter-spacing: 0.008em;
+  text-wrap: balance;
+}
+
+/* Centered 240px Antique Brass hairline */
+.rule-brass {
+  width: 240px;
+  max-width: 60%;
+  height: 0;
+  margin: clamp(2.25rem, 5vw, 3.25rem) auto 0;
+  border: 0;
+  border-top: 1px solid var(--antique-brass);
+}
+
+/* Tenets — the manifesto (home) */
+.tenets { padding: clamp(3rem, 8vw, 5rem) 0 clamp(1rem, 3vw, 2rem); }
+.tenets__list {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+.tenets__item {
+  padding: clamp(1.15rem, 3vw, 1.6rem) 0.5rem;
+  color: var(--bone);
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.3125rem);
+  line-height: 1.55;
+  border-top: 1px solid var(--hairline);
+}
+.tenets__item:last-child { border-bottom: 1px solid var(--hairline); }
+
+/* =====================================================================
+   Interior page shell
+   ===================================================================== */
+.page {
+  padding: clamp(3.5rem, 9vw, 6.5rem) 0 clamp(3rem, 7vw, 5rem);
+  text-align: center;
+}
+.page__title {
+  margin: 0 auto;
+  max-width: 24ch;
+  font-weight: 500;
+  font-size: clamp(1.9375rem, 1.4rem + 2.7vw, 3rem);
+  line-height: 1.18;
+  letter-spacing: 0.006em;
+  text-wrap: balance;
+}
+.page__lede {
+  max-width: var(--measure);
+  margin: clamp(1.75rem, 4vw, 2.5rem) auto 0;
+  font-size: clamp(1.1875rem, 1.05rem + 0.7vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--bone);
+  text-wrap: pretty;
+}
+
+/* Approach — expanded tenets */
+.holds {
+  max-width: 40rem;
+  margin: clamp(3rem, 7vw, 5rem) auto 0;
+  display: flex;
+  flex-direction: column;
+}
+.hold {
+  padding: clamp(2rem, 5vw, 3rem) 0;
+  border-top: 1px solid var(--hairline);
+  text-align: left;
+  display: grid;
+  grid-template-columns: 3.25rem 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: baseline;
+}
+.holds .hold:last-child { border-bottom: 1px solid var(--hairline); }
+.hold__num {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.375rem;
+  color: var(--antique-brass);
+  line-height: 1;
+}
+.hold__lead {
+  margin: 0 0 0.6rem;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.625rem);
+  line-height: 1.28;
+  color: var(--bone);
+}
+.hold__body {
+  margin: 0;
+  color: var(--bone-muted);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  max-width: 44ch;
+}
+
+/* Approach — closing coda */
+.coda {
+  max-width: 34rem;
+  margin: clamp(1.75rem, 4vw, 2.5rem) auto 0;
+  font-style: italic;
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+  line-height: 1.5;
+  color: var(--bone);
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Companies — enumerated sectors */
+.sectors {
+  max-width: 40rem;
+  margin: clamp(3rem, 7vw, 5rem) auto 0;
+  list-style: none;
+  padding: 0;
+}
+.sector {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: baseline;
+  padding: clamp(1.5rem, 3.5vw, 2rem) 0;
+  border-top: 1px solid var(--hairline);
+  text-align: left;
+}
+.sectors .sector:last-child { border-bottom: 1px solid var(--hairline); }
+.sector__num {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--antique-brass);
+  line-height: 1;
+  font-variant-numeric: normal;
+}
+.sector__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sector__name {
+  font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.4375rem);
+  font-weight: 500;
+  color: var(--bone);
+}
+.sector__firms {
+  font-size: 1.0625rem;
+  color: var(--bone-muted);
+  letter-spacing: 0.01em;
+}
+.sector__firms .dot { color: var(--antique-brass); margin: 0 0.15em; }
+.sector__firms--pending { font-style: italic; }
+.sector__firms--note { font-style: italic; max-width: 34ch; }
+
+/* Contact page */
+.contact-block { padding: clamp(2rem, 6vw, 4rem) 0 0; text-align: center; }
+.contact-block .monogram {
+  width: clamp(4.25rem, 12vw, 6rem);
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
+}
+.contact__lines {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  font-size: clamp(0.9375rem, 0.82rem + 0.5vw, 1.125rem);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.16em;
+  line-height: 2;
+}
+.contact__email a,
+.mailto {
+  color: var(--bone);
+  border-bottom: 1px solid transparent;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+.contact__email a:hover, .contact__email a:focus-visible,
+.mailto:hover, .mailto:focus-visible {
+  color: var(--antique-brass);
+  border-bottom-color: var(--antique-brass);
+}
+.contact__note {
+  margin: clamp(2.5rem, 6vw, 3.5rem) auto 0;
+  max-width: 30rem;
+  color: var(--bone-muted);
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.6;
+}
+
+/* =====================================================================
+   Footer
+   ===================================================================== */
+.site-foot {
+  flex-shrink: 0;
+  margin-top: clamp(4rem, 10vw, 7rem);
+  padding: clamp(3rem, 7vw, 5rem) var(--page-x) clamp(2.5rem, 5vw, 3.25rem);
+  border-top: 1px solid var(--hairline);
+  text-align: center;
+}
+.site-foot .monogram { width: 3rem; margin: 0 auto clamp(1.5rem, 4vw, 2.25rem); }
+.foot-contact {
+  margin: 0 0 1.1rem;
+  font-size: 0.8125rem;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.16em;
+  color: var(--bone-muted);
+  line-height: 2;
+}
+.foot-contact .sep { color: var(--antique-brass); margin: 0 0.4em; }
+.foot-contact .mailto { color: var(--bone-muted); }
+.foot-contact .mailto:hover { color: var(--antique-brass); }
+.foot-legal {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--bone-muted);
+}
+.foot-note {
+  margin: 0.55rem 0 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--bone-muted);
+}
+
+/* =====================================================================
+   Motion — CSS-only load fade (no JS). Guarded for reduced-motion.
+   Transform/opacity only, so no layout shift.
+   ===================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .fade { opacity: 0; transform: translateY(10px); animation: rise 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .fade--1 { animation-delay: 60ms; }
+  .fade--2 { animation-delay: 200ms; }
+  .fade--3 { animation-delay: 340ms; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+}
+
+/* =====================================================================
+   Responsive
+   ===================================================================== */
+@media (max-width: 40rem) {
+  .hold { grid-template-columns: 1fr; gap: 0.5rem; }
+  .hold__num { margin-bottom: 0.25rem; }
+  .sector { grid-template-columns: 2.75rem 1fr; }
+}
